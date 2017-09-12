@@ -4,7 +4,7 @@ describe("Currying", () => {
 
     // curry :: (* → a) → (* → a)
 
-    const curry = (fun, ...ar) => ar.length === func.length ? fun(...args) : curry.bind(null, fun, ...args);
+    const curry = (fun, ...ar) => (ar.length >= fun.length) ? fun(...ar) : curry.bind(null, fun, ...ar);
 
     /***************************************************************/
 
