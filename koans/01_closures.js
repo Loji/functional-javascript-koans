@@ -7,6 +7,12 @@ describe("Closures", () => {
 
     /***************************************************************/
 
+    const counter = () => {
+      let i = 0;
+      
+      return () => ++i;
+    };
+
     test("returns counting function", () => {
       expect(typeof counter()).toEqual("function");
     });
@@ -28,6 +34,17 @@ describe("Closures", () => {
     // unique :: () → a → Boolean
 
     /***************************************************************/
+
+    const unique = () => {
+      const filtered = [];
+      return (el) => {
+        if (!filtered.find((f) => f === el)) {
+          filtered.push(el);
+          return el;
+        }
+        return false;
+      };
+    }
 
     test("keeps only first unique values dropping duplicates", () => {
       expect([1, 1, 2, 1].filter(unique())).toEqual([1, 2]);

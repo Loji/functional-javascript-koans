@@ -5,6 +5,8 @@ describe("Filter", () => {
 
     // predicate :: Number → Boolean
 
+    const predicate = (el) => el % 2 === 0;
+
     /***************************************************************/
 
     test("selects only even numbers", () => {
@@ -21,6 +23,10 @@ describe("Filter", () => {
 
     // predicate :: String → Boolean
 
+    const predicate = (el) => {
+      return el.toLowerCase() !== el.toLowerCase().split('').reverse().join('');
+    };
+
     /***************************************************************/
 
     test("selects only non-palindromes", () => {
@@ -33,6 +39,16 @@ describe("Filter", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
     // filter :: ((a → Boolean), [a]) → [a]
+
+    const filter = (a, b) => {
+      const result = [];
+      for(let i = 0; i < b.length; i++) {
+        if(a(b[i])) {
+          result.push(b[i])
+        }
+      }
+      return result;
+    }
 
     /***************************************************************/
 
@@ -51,6 +67,22 @@ describe("Map", () => {
 
     // fibonacci :: Number → Number
 
+    const fibonacci = (a) => {
+      const result = [];
+      for(let i = 0; i <= a; i++) {
+        if(i === 0) {
+          result.push(0);
+          continue;
+        } 
+        if(i === 1) {
+          result.push(1);
+          continue;
+        } 
+        result.push(result[i - 1] + result[i - 2]);
+      }
+      return result[result.length - 1];
+    }
+
     /***************************************************************/
 
     test("maps n-th element to it's value", () => {
@@ -64,6 +96,14 @@ describe("Map", () => {
 
     // map :: ((a → b), [a]) → [b]
 
+    const map = (func, tab) => {
+      const result = [];
+      for(let i = 0; i < tab.length; i++) { 
+        result.push(func(tab[i]));
+      }
+      return result;
+    }
+
     /***************************************************************/
 
     test("accepts project function and returns new array", () => {
@@ -75,10 +115,18 @@ describe("Map", () => {
   describe("Implement a range function", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
-    // HINT: You can do it in one line using Array.from (or spread operator), array constructor and built-in map function
+    // HINT: You can do it in one line using Array.from (or spread operator),
+    // array constructor and built-in map function
 
     // range :: (Number, Number) → [Number]
 
+    const range = (a, b) => {
+      const result = Array.from({
+        length: Math.abs(a - b) + 1
+      }, (x, y) => a + y);
+      return (result);
+    }
+    
     /***************************************************************/
 
     test("renders range from natural numbers", () => {
@@ -98,6 +146,12 @@ describe("Reduce", () => {
 
     // fromPairs :: ({ [a]: b }) → [{a, b}]
 
+    const fromPairs = (from) => {
+      return from.reduce((a, b) => Object.assign({}, a, { 
+        [b[0]]: b[1]
+      }), {});
+    };
+
     /***************************************************************/
 
     test("transforms array of 2-element arrays with a key and a value to an object", () => {
@@ -109,6 +163,8 @@ describe("Reduce", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
     // map :: ((a → b), [a]) → [b]
+
+    const map = (callback, ar) => ar.reduce((sum, next) => [ ...sum, callback(next)], []);
 
     /***************************************************************/
 
@@ -123,6 +179,13 @@ describe("Reduce", () => {
 
     // filter :: ((a → Boolean), [a]) → [a]
 
+    const filter = (callback, ar) => ar.reduce((sum, next) => {
+      if(callback(next)) {
+        return [ ...sum, next ];
+      } 
+      return sum;
+    }, []);
+    
     /***************************************************************/
 
     test("accepts predicate and returns new array", () => {
