@@ -4,6 +4,8 @@ describe("Currying", () => {
 
     // curry :: (* → a) → (* → a)
 
+    const curry = (fun, ...ar) => ar.length === func.length ? fun(...args) : curry.bind(null, fun, ...args);
+
     /***************************************************************/
 
     test("curried function returns a function after applying a first argument", () => {
@@ -22,10 +24,10 @@ describe("Currying", () => {
     //
     // HINT: Function.prototype.length specifies function arity
     //
-    // test("curried function's arguments can be applied within a first call", () => {
-    //   const sum = (a, b) => a + b;
-    //   const curriedSum = curry(sum);
-    //   expect(curriedSum(2, 3)).toEqual(5);
-    // });
+    test("curried function's arguments can be applied within a first call", () => {
+      const sum = (a, b, c) => a + b + c;
+      const curriedSum = curry(sum);
+      expect(curriedSum(2, 3, 2)).toEqual(7);
+    });
   });
 });

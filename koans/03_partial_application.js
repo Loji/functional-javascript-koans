@@ -4,6 +4,13 @@ describe("Partial application", () => {
 
     // sum :: Number → Number → Number
 
+    const sum = (...args) => {
+      if(args.length === 2) {
+        return args[0] + args[1]; 
+      }
+      return sum.bind(null, ...args);
+    };
+
     /***************************************************************/
 
     test("sum returns a function after applying a first argument", () => {
@@ -23,6 +30,13 @@ describe("Partial application", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
     // map :: (a → b) → [a] → [b]
+
+    const map = (...args) => {
+      if(args.length === 2) {
+        return args[1].map(args[0]); 
+      }
+      return map.bind(null, ...args);
+    };
 
     /***************************************************************/
 

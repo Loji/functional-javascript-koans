@@ -6,6 +6,8 @@ describe("Function composition", () => {
 
     // slugify :: String -> String
 
+    const slugify = (str) => join('-', words(toLower(deburr(str))))
+
     /***************************************************************/
 
     test("changes title into a safe slug", () => {
@@ -19,6 +21,8 @@ describe("Function composition", () => {
 
     // slugify :: String -> String
 
+    const slugify = (str) => compose(compose(join)('-'), words, deburr, toLower)(str)
+
     /***************************************************************/
 
     test("changes title into a safe slug", () => {
@@ -31,6 +35,8 @@ describe("Function composition", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
     // slugify :: String -> String
+
+    const slugify = (str) => flow(toLower, deburr, words, flow(join)('-'))(str)
 
     /***************************************************************/
 
