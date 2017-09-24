@@ -2,6 +2,8 @@ describe("Currying", () => {
   describe("Implement curry function", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
+    // HINT: Function.prototype.length specifies function arity
+
     // curry :: (* → a) → (* → a)
 
     const curry = (fun, ...ar) => (ar.length >= fun.length) ? fun(...ar) : curry.bind(null, fun, ...ar);

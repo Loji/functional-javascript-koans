@@ -46,5 +46,3 @@ describe("Function composition", () => {
     });
   });
 });
-
-// BONUS: Make sure your first slugify implementation is using a point-free style
