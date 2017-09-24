@@ -1,10 +1,12 @@
 describe("Immutability", () => {
   describe("Make recipients array immutable", () => {
-    let recipients = ["foo@example.com", "bar@example.com"];
+    const recipients = ["foo@example.com", "bar@example.com"];
 
     /********************* YOUR IMPLEMENTATION *********************/
 
     // HINT: Look for an appropriate method on the Object constructor
+
+    Object.freeze(recipients);
 
     /***************************************************************/
 

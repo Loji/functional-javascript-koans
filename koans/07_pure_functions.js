@@ -4,6 +4,11 @@ describe("Pure functions", () => {
 
     // append :: ([a], a) -> [a]
 
+    const append = (arr, el) => {
+      arr.push(el);
+      return arr;
+    }
+
     /***************************************************************/
 
     test("mutates passed array", () => {
@@ -27,6 +32,8 @@ describe("Pure functions", () => {
     /********************* YOUR IMPLEMENTATION *********************/
 
     // append :: ([a], a) -> [a]
+
+    const append = (arr, add) => [...arr, add];
 
     /***************************************************************/
 
